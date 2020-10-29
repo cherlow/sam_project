@@ -88,26 +88,27 @@
 
 
 
-@foreach ($responders as $responder)
-<tr>
-    <td>
-        <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" id="12">
-            <label class="custom-control-label" for="12"></label>
-        </div>
-    </td>
-<td>{{$responder->id}}</td>
-<td>{{$responder->name}}</td>
-<td>{{$responder->mobile}}</td>
-<td>{{$responder->email}}</td>
-<td>{{$responder->specialisation}}</td>
-<td>{{$responder->created_at->diffForHumans()}}</td>
+                                @foreach ($responders as $responder)
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="12">
+                                            <label class="custom-control-label" for="12"></label>
+                                        </div>
+                                    </td>
+                                    <td>{{$responder->id}}</td>
+                                    <td>{{$responder->name}}</td>
+                                    <td>{{$responder->mobile}}</td>
+                                    <td>{{$responder->email}}</td>
+                                    <td>{{$responder->specialisation}}</td>
+                                    <td>{{$responder->created_at->diffForHumans()}}</td>
 
-    <td>
-        <a href="#" class="btn btn-success">View</a>
-    </td>
-</tr>
-@endforeach
+                                    <td>
+                                        <a href="/admin/responders/{{ $responder->id }}"
+                                            class="btn btn-success">View</a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
 

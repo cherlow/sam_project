@@ -15,9 +15,9 @@ class EmergencyController extends Controller
      */
     public function index()
     {
-        $emergencies= auth()->user()->emergencies;
+        $emergencies = auth()->user()->emergencies;
 
-        return view("user.emergencies")->with("emergencies",$emergencies);
+        return view("user.emergencies")->with("emergencies", $emergencies);
     }
 
     /**
@@ -38,20 +38,19 @@ class EmergencyController extends Controller
      */
     public function store(Request $request)
     {
-       $emergency=new Emergency();
+        $emergency = new Emergency();
 
-       $emergency->user_id=$request->input("user_id");
-       $emergency->mobile=$request->input("mobile");
-       $emergency->location=$request->input("location");
-       $emergency->details=$request->input("details");
-       $emergency->status=0;
-     $emergency->save();
+        $emergency->user_id = $request->input("user_id");
+        $emergency->mobile = $request->input("mobile");
+        $emergency->location = $request->input("location");
+        $emergency->details = $request->input("details");
+        $emergency->status = 0;
+        $emergency->save();
 
-    // toatr here
+        // toatr here
 
 
-    return redirect("/user/emergency");
-
+        return redirect("/user/emergency");
     }
 
     /**
@@ -100,68 +99,79 @@ class EmergencyController extends Controller
     }
 
 
-    public function adminemergency(){
+    public function adminemergency()
+    {
 
 
-         $emergencies=Emergency::where("status",0)->get();
+        $emergencies = Emergency::where("status", 0)->get();
 
 
 
-         return view("admin.adminemergency")->with("emergencies",$emergencies);
+        return view("admin.adminemergency")->with("emergencies", $emergencies);
     }
 
 
-    public function adminemergencyshow(Emergency $emergency){
+    public function adminemergencyshow(Emergency $emergency)
+    {
 
-$responders=Responder::all();
-        return view("admin.adminemergencydetails")->with("emergency",$emergency)->with("responders",$responders);
+        $responders = Responder::all();
+        return view("admin.adminemergencydetails")->with("emergency", $emergency)->with("responders", $responders);
     }
 
 
-    public function addresponder(Request $request,Emergency $emergency){
+    public function addresponder(Request $request, Emergency $emergency)
+    {
 
         // check if this responder has an active session
 
 
 
- $responder=Responder::find($request->input("responder"));
+        $responder = Responder::find($request->input("responder"));
 
-  $emergencies=$responder->emergencies->where("status",0);
+        $emergencies = $responder->emergencies->where("status", 0);
 
-  if($emergencies){
+        if ($emergencies) {
 
-   $emergency->responder_id=$responder->id;
+            $emergency->responder_id = $responder->id;
 
-   $emergency->save();
+            $emergency->save();
 
-//    toastr succes
+            //    toastr succes
 
-   return redirect("/admin/emergency");
-  }
-  else{
-
+            return redirect("/admin/emergency");
+        } else {
 
 
 
-    // toastr error
+
+            // toastr error
 
 
-    return redirect()->back();
-
-  }
-
-
+            return redirect()->back();
+        }
     }
 
-    public function finishemergency(Emergency $emergency){
+    public function finishemergency(Emergency $emergency)
+    {
 
 
-        $emergency->status=1;
+        $emergency->status = 1;
         $emergency->save();
 
         return redirect("/admin/emergency");
+    }
 
 
+    public function useremergencydetails(Emergency $emergency)
+    {
 
+        return view("user.emergencydetails")->with("emergency", $emergency);
+    }
+
+
+    public function dpemergencydetails(Emergency $emergency)
+    {
+
+        return view("doctor.patientemergencydetails")->with("emergency", $emergency);
     }
 }

@@ -15,9 +15,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctors= User::where("role", 2)->get();
+        $doctors = User::where("role", 2)->get();
 
-        return view("admin.doctors")->with("doctors",$doctors);
+        return view("admin.doctors")->with("doctors", $doctors);
     }
 
     /**
@@ -104,12 +104,18 @@ class DoctorController extends Controller
     }
 
 
-    public function userdoctors(){
+    public function userdoctors()
+    {
 
 
-        $doctors= User::where("role", 2)->get();
+        $doctors = User::where("role", 2)->get();
 
-        return view("user.doctors")->with("doctors",$doctors);
+        return view("user.doctors")->with("doctors", $doctors);
+    }
 
+    public function admindoctordetails(User $user)
+    {
+
+        return view("admin.doctordetails")->with("user", $user);
     }
 }

@@ -7,11 +7,31 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-public function index(){
+    public function index()
+    {
 
-    $patients=User::where("role",1)->get();
+        $patients = User::where("role", 1)->get();
 
 
-    return view("doctor.patients")->with('patients',$patients);
-}
+        return view("doctor.patients")->with('patients', $patients);
+    }
+
+    public function dpatientdetails(User $user)
+    {
+
+        return view("doctor.patientdetails")->with("user", $user);
+    }
+
+    public function adminpatients()
+    {
+        $patients = User::where("role", 1)->get();
+        return view("admin.patients")->with("patients", $patients);
+    }
+
+
+    public function apatientdetails(User $user)
+    {
+        return view("admin.patientdetails")->with("user", $user);
+
+    }
 }

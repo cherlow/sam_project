@@ -28,12 +28,13 @@ class ConversationController extends Controller
     }
 
 
-    public function messaging(User $user){
+    public function messaging(User $user)
+    {
         $users = User::all();
 
-        $to=$user;
+        $to = $user;
 
-        $id=$user->id;
+        $id = $user->id;
 
 
         $messages = Message::where(function ($query) use ($id) {
@@ -48,15 +49,14 @@ class ConversationController extends Controller
 
         $conversations = Conversation::where('from_id', Auth::user()->id)->orWhere('to_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
         return view("doctor.doctormessages")->with("messages", $messages)->with("chats", $conversations)->with("to", $to)->with('users', $users);
-
-
     }
 
 
-public function dmessage(Request $request,User $user){
+    public function dmessage(Request $request, User $user)
+    {
 
 
-    $receiver = $user;
+        $receiver = $user;
 
 
 
@@ -86,18 +86,22 @@ public function dmessage(Request $request,User $user){
 
         $conversation->save();
 
-        $message=new Message();
+        $message = new Message();
 
 
-        $message->to_id=$user->id;
-        $message->from_id=Auth::id();
-        $message->content=$request->input("message");
+        $message->to_id = $user->id;
+        $message->from_id = Auth::id();
+        $message->content = $request->input("message");
 
         $message->save();
 
 
-        return redirect("/doctor/messages/".$user->id);
-}
+        if (auth()->user()->role == 2) {
+            return redirect("/doctor/messages/" . $user->id);
+        } else {
+            return redirect("/user/messages/" . $user->id);
+        }
+    }
 
 
     /**
@@ -164,5 +168,42 @@ public function dmessage(Request $request,User $user){
     public function destroy(Conversation $conversation)
     {
         //
+    }
+
+
+    public function usermessaging(User $user)
+    {
+
+        $users = User::all();
+
+        $to = $user;
+
+        $id = $user->id;
+
+
+        $messages = Message::where(function ($query) use ($id) {
+            $query->where('from_id', Auth::id())
+                ->where('to_id', $id);
+        })->orWhere(function ($query) use ($id) {
+            $query->where('to_id', Auth::id())
+                ->where('from_id', $id);
+        })->orderBy('created_at', 'asc')->orderBy('updated_at', 'asc')->get();
+
+
+
+        $conversations = Conversation::where('from_id', Auth::user()->id)->orWhere('to_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+        return view("user.usermessages")->with("messages", $messages)->with("chats", $conversations)->with("to", $to)->with('users', $users);
+    }
+
+    public function usermessages()
+    {
+        $messages = [];
+
+        $to = null;
+
+        $users = User::all();
+
+        $conversations = Conversation::where('from_id', Auth::user()->id)->orWhere('to_id', Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+        return view("user.usermessages")->with("messages", $messages)->with("chats", $conversations)->with("to", $to)->with('users', $users);
     }
 }

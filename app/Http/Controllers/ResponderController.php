@@ -14,9 +14,9 @@ class ResponderController extends Controller
      */
     public function index()
     {
-        $responders=Responder::all();
+        $responders = Responder::all();
 
-        return view("admin.responders")->with("responders",$responders);
+        return view("admin.responders")->with("responders", $responders);
     }
 
     /**
@@ -39,16 +39,16 @@ class ResponderController extends Controller
     {
 
 
-    $responder=new Responder();
-    $responder->name=$request->input("name");
-    $responder->mobile=$request->input("mobile");
-    $responder->email=$request->input("email");
-    $responder->specialisation=$request->input("specialisation");
-    $responder->details=$request->input("details");
+        $responder = new Responder();
+        $responder->name = $request->input("name");
+        $responder->mobile = $request->input("mobile");
+        $responder->email = $request->input("email");
+        $responder->specialisation = $request->input("specialisation");
+        $responder->details = $request->input("details");
 
-    $responder->save();
+        $responder->save();
 
-    return redirect("/responders/index");
+        return redirect("/responders/index");
     }
 
     /**
@@ -94,5 +94,11 @@ class ResponderController extends Controller
     public function destroy(Responder $responder)
     {
         //
+    }
+
+    public function details(Responder $responder)
+    {
+
+        return view("admin.responderdetails")->with("responder", $responder);
     }
 }

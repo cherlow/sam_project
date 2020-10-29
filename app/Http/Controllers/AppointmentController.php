@@ -26,9 +26,8 @@ class AppointmentController extends Controller
     public function create()
     {
 
-        $doctors=User::where("role",2)->get();
-    return view("user.appointmentcreate")->with("doctors",$doctors);
-
+        $doctors = User::where("role", 2)->get();
+        return view("user.appointmentcreate")->with("doctors", $doctors);
     }
 
     /**
@@ -42,32 +41,29 @@ class AppointmentController extends Controller
 
 
 
-        $appointments=Appointment::where("doctor_id",$request->input("doctor"))->where("time_slot",$request->input("time_slot"))->where("date",$request->input("date"))->get();
+        $appointments = Appointment::where("doctor_id", $request->input("doctor"))->where("time_slot", $request->input("time_slot"))->where("date", $request->input("date"))->get();
 
 
-        if( count($appointments)>0){
+        if (count($appointments) > 0) {
 
             // throw a duplicate error
 
             return redirect()->back();
-        }
-        else{
+        } else {
 
-            $appointment=new Appointment();
+            $appointment = new Appointment();
 
-            $appointment->user_id=$request->input("user_id");
+            $appointment->user_id = $request->input("user_id");
 
-            $appointment->doctor_id=$request->input("doctor");
-            $appointment->date=$request->input("date");
-            $appointment->time_slot=$request->input("time_slot");
-            $appointment->details=$request->input("details");
+            $appointment->doctor_id = $request->input("doctor");
+            $appointment->date = $request->input("date");
+            $appointment->time_slot = $request->input("time_slot");
+            $appointment->details = $request->input("details");
 
             $appointment->save();
 
-            return redirect("/user/appointments/".auth()->user()->id);
+            return redirect("/user/appointments/" . auth()->user()->id);
         }
-
-
     }
 
     /**
@@ -114,40 +110,65 @@ class AppointmentController extends Controller
     {
         //
     }
-    public function userappointments(User $user){
+    public function userappointments(User $user)
+    {
 
-$appointments= $user->appointments;
+        $appointments = $user->appointments;
 
-return view("user.appointments")->with("appointments",$appointments);
-
-
+        return view("user.appointments")->with("appointments", $appointments);
     }
 
 
-    public function dappointment(){
+    public function dappointment()
+    {
 
 
 
-        $appointments= Appointment::where("doctor_id",Auth::id())->where("status",0)->get();
+        $appointments = Appointment::where("doctor_id", Auth::id())->where("status", 0)->get();
 
-        return view("doctor.appointments")->with("appointments",$appointments);
+        return view("doctor.appointments")->with("appointments", $appointments);
     }
 
-    public function dappointmentdetails(Appointment $appointment){
+    public function dappointmentdetails(Appointment $appointment)
+    {
 
-    return view("doctor.appointmentdetails")->with("appointment",$appointment);
+        return view("doctor.appointmentdetails")->with("appointment", $appointment);
     }
 
-    public function addnotes(Request $request,Appointment $appointment){
+    public function addnotes(Request $request, Appointment $appointment)
+    {
 
 
-         $appointment->status=1;
-         $appointment->notes=$request->input("notes");
+        $appointment->status = 1;
+        $appointment->notes = $request->input("notes");
 
-         $appointment->save();
+        $appointment->save();
 
 
-         return redirect("/doctor/appointments");
+        return redirect("/doctor/appointments");
+    }
 
+
+    public function userappointmentdetails(Appointment $appointment)
+    {
+
+
+
+        return view("user.appointmentdetails")->with("appointment", $appointment);
+    }
+
+
+    public function aappointmentdetails(Appointment $appointment)
+    {
+
+        return view("admin.appointmentdetails")->with("appointment", $appointment);
+    }
+
+    public function aappointments()
+    {
+
+        $appointments = Appointment::all();
+
+        return view("admin.appointments")->with("appointments", $appointments);
     }
 }

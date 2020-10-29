@@ -42,7 +42,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding">
         <div class="col-md-6">
-            <h3 class="block-title">Quick Statistics</h3>
+            <h3 class="block-title"> Patients</h3>
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -51,7 +51,8 @@
                         <span class="ti-home"></span>
                     </a>
                 </li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item active"> Patients</li>
             </ol>
         </div>
     </div>
@@ -59,59 +60,13 @@
 
     <!-- /Breadcrumb -->
     <!-- Main Content -->
-    <div class="container-fluid home">
-
-
-        <div class="row">
-            <!-- Widget Item -->
-            <div class="col-md-4">
-                <div class="widget-area proclinic-box-shadow color-red">
-                    <div class="widget-left">
-                        <span class="ti-user"></span>
-                    </div>
-                    <div class="widget-right">
-                        <h4 class="wiget-title">Patients</h4>
-                        <span class="numeric color-red">{{ count($patients) }}</span>
-                    </div>
-                </div>
-            </div>
-            <!-- /Widget Item -->
-            <!-- Widget Item -->
-            <div class="col-md-4">
-                <div class="widget-area proclinic-box-shadow color-green">
-                    <div class="widget-left">
-                        <span class="ti-bar-chart"></span>
-                    </div>
-                    <div class="widget-right">
-                        <h4 class="wiget-title">Doctors</h4>
-                        <span class="numeric color-green">{{ count($doctors) }}</span>
-                    </div>
-                </div>
-            </div>
-            <!-- /Widget Item -->
-            <!-- Widget Item -->
-            <div class="col-md-4">
-                <div class="widget-area proclinic-box-shadow color-yellow">
-                    <div class="widget-left">
-                        <span class="ti-truck"></span>
-                    </div>
-                    <div class="widget-right">
-                        <h4 class="wiget-title">Emergency Request</h4>
-                        <span class="numeric color-yellow">{{ count($emergencies) }}</span>
-                    </div>
-                </div>
-            </div>
-            <!-- /Widget Item -->
-        </div>
-
-
-
+    <div class="container-fluid">
 
         <div class="row">
             <!-- Widget Item -->
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow">
-                    <h3 class="widget-title">Pending Emergency List</h3>
+                    <h3 class="widget-title">Patient List</h3>
                     <div class="table-responsive mb-3">
                         <table id="tableId" class="table table-bordered table-striped">
                             <thead>
@@ -122,13 +77,11 @@
                                             <label class="custom-control-label" for="select-all"></label>
                                         </div>
                                     </th>
-                                    <th>Emergency ID</th>
+                                    <th>Patient ID</th>
                                     <th>Patient Name</th>
-                                    <th>Mobile</th>
-                                    <th>Location</th>
-                                    <th>Status</th>
-                                    <th>Created At</th>
-
+                                    <th>Patient Email </th>
+                                    <th>Emergency Requests</th>
+                                    <th>Appointments</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -136,38 +89,31 @@
 
 
 
-                                @foreach ($pending as $emergency)
+
+
+
+                                @foreach ($patients as $patient)
+
                                 <tr>
                                     <td>
                                         <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="12">
-                                            <label class="custom-control-label" for="12"></label>
+                                            <input class="custom-control-input" type="checkbox" id="7">
+                                            <label class="custom-control-label" for="7"></label>
                                         </div>
                                     </td>
-                                    <td>{{$emergency->id}}</td>
-                                    <td>{{$emergency->user->name}}</td>
-                                    <td>{{$emergency->mobile}}</td>
-                                    <td>{{$emergency->location}}</td>
+                                    <td>{{$patient->id}}</td>
+                                    <td>{{$patient->name}}</td>
+                                    <td>{{$patient->email}}</td>
+                                    <td>{{count($patient->emergencies)}}</td>
+                                    <td>{{count($patient->Appointments)}}</td>
                                     <td>
-                                        @if ($emergency->status==0)
-                                        <span class="badge badge-warning">Pending</span>
 
-                                        @else
-                                        <span class="badge badge-success">Completed</span>
-
-                                        @endif
-
+                                        <a href="/admin/patientdetails/{{ $patient->id }}" class="btn btn-success">
+                                            View </a>
                                     </td>
 
-                                    <td>{{$emergency->created_at->diffForHumans()}}</td>
-                                    <td>
-                                        <a href="/admin/emergency/{{$emergency->id}}" class="btn btn-success">View</a>
-                                    </td>
                                 </tr>
                                 @endforeach
-
-
-
 
 
                             </tbody>
@@ -182,8 +128,6 @@
             </div>
             <!-- /Widget Item -->
         </div>
-
-
     </div>
     <!-- /Main Content -->
 </div>

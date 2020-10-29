@@ -49,6 +49,15 @@ Route::get('/dmessage/post/{user}', [App\Http\Controllers\ConversationController
 Route::get('/doctor/appointments', [App\Http\Controllers\AppointmentController::class, 'dappointment']);
 Route::get('/doctor/appointments/{appointment}', [App\Http\Controllers\AppointmentController::class, 'dappointmentdetails']);
 Route::post('/addnotes/{appointment}', [App\Http\Controllers\AppointmentController::class, 'addnotes']);
-
-
-
+Route::get('/user/messages/{user}', [App\Http\Controllers\ConversationController::class, 'usermessaging']);
+Route::get('/user/messages', [App\Http\Controllers\ConversationController::class, 'usermessages']);
+Route::get('/user/appointmentdetails/{appointment}', [App\Http\Controllers\AppointmentController::class, 'userappointmentdetails']);
+Route::get('/user/emergencydetails/{emergency}', [App\Http\Controllers\EmergencyController::class, 'useremergencydetails']);
+Route::get('/doctor/patientdetails/{user}', [App\Http\Controllers\PatientController::class, 'dpatientdetails']);
+Route::get('/doctor/emergencydetails/{emergency}', [App\Http\Controllers\EmergencyController::class, 'dpemergencydetails']);
+Route::get('/admin/patients', [App\Http\Controllers\PatientController::class, 'adminpatients']);
+Route::get('/admin/patientdetails/{user}', [App\Http\Controllers\PatientController::class, 'apatientdetails']);
+Route::get('/admin/appointments/{appointment}', [App\Http\Controllers\AppointmentController::class, 'aappointmentdetails']);
+Route::get('/admin/doctors/{user}', [App\Http\Controllers\DoctorController::class, 'admindoctordetails']);
+Route::get('/admin/appointments', [App\Http\Controllers\AppointmentController::class, 'aappointments']);
+Route::get('/admin/responders/{responder}', [App\Http\Controllers\ResponderController::class, 'details']);

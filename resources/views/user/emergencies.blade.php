@@ -88,35 +88,36 @@
 
 
 
-@foreach ($emergencies as $emergency)
-<tr>
-    <td>
-        <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" id="12">
-            <label class="custom-control-label" for="12"></label>
-        </div>
-    </td>
-<td>{{$emergency->id}}</td>
-<td>{{$emergency->user->name}}</td>
-<td>{{$emergency->mobile}}</td>
-<td>{{$emergency->location}}</td>
-<td>
-@if ($emergency->status==0)
-<span class="badge badge-warning">Pending</span>
+                                @foreach ($emergencies as $emergency)
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="12">
+                                            <label class="custom-control-label" for="12"></label>
+                                        </div>
+                                    </td>
+                                    <td>{{$emergency->id}}</td>
+                                    <td>{{$emergency->user->name}}</td>
+                                    <td>{{$emergency->mobile}}</td>
+                                    <td>{{$emergency->location}}</td>
+                                    <td>
+                                        @if ($emergency->status==0)
+                                        <span class="badge badge-warning">Pending</span>
 
-@else
-<span class="badge badge-success">Completed</span>
+                                        @else
+                                        <span class="badge badge-success">Completed</span>
 
-@endif
+                                        @endif
 
-</td>
+                                    </td>
 
-<td>{{$emergency->created_at->diffForHumans()}}</td>
-    <td>
-        <a href="#" class="btn btn-success">View</a>
-    </td>
-</tr>
-@endforeach
+                                    <td>{{$emergency->created_at->diffForHumans()}}</td>
+                                    <td>
+                                        <a href="/user/emergencydetails/{{ $emergency->id }}"
+                                            class="btn btn-success">View</a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
 

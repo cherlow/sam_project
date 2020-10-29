@@ -83,6 +83,7 @@
                                     <th>Phone</th>
                                     <th>Specialization</th>
                                     <th>Action</th>
+                                    <th>Message</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -92,25 +93,29 @@
 
 
 
-@foreach ($doctors as $doctor)
+                                @foreach ($doctors as $doctor)
 
-<tr>
-    <td>
-        <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" id="7">
-            <label class="custom-control-label" for="7"></label>
-        </div>
-    </td>
-<td>{{$doctor->id}}</td>
-<td>{{$doctor->name}}</td>
-<td>{{$doctor->experience}}</td>
-<td>{{$doctor->phone}}</td>
-<td>{{$doctor->specialization}}</td>
-    <td>
-        <a href="/user/appointments" class="btn btn-success"> Make an Appointment</a>
-    </td>
-</tr>
-@endforeach
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="7">
+                                            <label class="custom-control-label" for="7"></label>
+                                        </div>
+                                    </td>
+                                    <td>{{$doctor->id}}</td>
+                                    <td>{{$doctor->name}}</td>
+                                    <td>{{$doctor->experience}}</td>
+                                    <td>{{$doctor->phone}}</td>
+                                    <td>{{$doctor->specialization}}</td>
+                                    <td>
+                                        <a href="/user/appointments" class="btn btn-success"> Make an Appointment</a>
+                                    </td>
+                                    <td>
+                                        <a href="/user/messages/{{ $doctor->id }}" class="btn btn-success">Send A
+                                            Message</a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
                             </tbody>

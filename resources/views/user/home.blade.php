@@ -70,9 +70,8 @@
                         <span class="ti-user"></span>
                     </div>
                     <div class="widget-right">
-                        <h4 class="wiget-title">Patients</h4>
-                        <span class="numeric color-red">348</span>
-                        <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +20% Increased</p>
+                        <h4 class="wiget-title">Doctors</h4>
+                        <span class="numeric color-red">{{ count($doctors) }}</span>
                     </div>
                 </div>
             </div>
@@ -85,8 +84,7 @@
                     </div>
                     <div class="widget-right">
                         <h4 class="wiget-title">Appointments</h4>
-                        <span class="numeric color-green">1585</span>
-                        <p class="inc-dec mb-0"><span class="ti-angle-down"></span> -15% Decreased</p>
+                        <span class="numeric color-green">{{ count(auth()->user()->appointments) }}</span>
                     </div>
                 </div>
             </div>
@@ -95,12 +93,11 @@
             <div class="col-md-4">
                 <div class="widget-area proclinic-box-shadow color-yellow">
                     <div class="widget-left">
-                        <span class="ti-money"></span>
+                        <span class="ti-truck"></span>
                     </div>
                     <div class="widget-right">
-                        <h4 class="wiget-title">Total Revenue</h4>
-                        <span class="numeric color-yellow">$7300</span>
-                        <p class="inc-dec mb-0"><span class="ti-angle-up"></span> +10% Increased</p>
+                        <h4 class="wiget-title">Emergency Requests</h4>
+                        <span class="numeric color-yellow">{{ count(auth()->user()->emergencies) }}</span>
                     </div>
                 </div>
             </div>
@@ -110,7 +107,79 @@
 
 
 
+        <div class="row">
+            <!-- Widget Item -->
+            <div class="col-md-12">
+                <div class="widget-area-2 proclinic-box-shadow">
+                    <h3 class="widget-title"> My Appointments</h3>
+                    <div class="table-responsive mb-3">
+                        <table id="tableId" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="no-sort">
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="select-all">
+                                            <label class="custom-control-label" for="select-all"></label>
+                                        </div>
+                                    </th>
+                                    <th>Appointment ID</th>
+                                    <th>Patient Name</th>
+                                    <th>Date</th>
+                                    <th>Session</th>
+                                    <th>Doctor Name</th>
+                                    <th>Status</th>
 
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                @foreach (auth()->user()->appointments as $appointment)
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="12">
+                                            <label class="custom-control-label" for="12"></label>
+                                        </div>
+                                    </td>
+                                    <td>{{$appointment->id}}</td>
+                                    <td>{{$appointment->user->name}}</td>
+                                    <td>{{$appointment->date}}</td>
+                                    <td>{{$appointment->time_slot}}</td>
+                                    <td>{{$appointment->doctor->name}}</td>
+                                    <td>
+                                        @if ($appointment->status==0)
+                                        <span class="badge badge-warning">Pending</span>
+                                        @else
+                                        <span class="badge badge-success">Completed</span>
+                                        @endif
+
+                                    </td>
+                                    <td>
+                                        <a href="/user/appointmentdetails/{{ $appointment->id }}"
+                                            class="btn btn-success">View</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+
+
+
+
+
+                            </tbody>
+                        </table>
+
+                        <!--Export links-->
+
+                        <!-- /Export links-->
+
+                    </div>
+                </div>
+            </div>
+            <!-- /Widget Item -->
+        </div>
 
 
     </div>

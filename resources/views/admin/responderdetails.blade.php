@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.adminlayout')
 
 @section('content')
 <div id="content">
@@ -42,7 +42,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding">
         <div class="col-md-6">
-            <h3 class="block-title">My Appointment </h3>
+            <h3 class="block-title">Responder Details
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -52,10 +52,12 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">My Appointment </li>
+                <li class="breadcrumb-item active">Responder Details </li>
             </ol>
         </div>
     </div>
+
+    {{-- my emergency list here --}}
 
     <div class="container-fluid">
 
@@ -63,58 +65,41 @@
             <!-- Widget Item -->
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow">
-                    <h3 class="widget-title">Appointments List</h3>
-                    <div class="table-responsive mb-3">
-                        <table id="tableId" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="no-sort">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="select-all">
-                                            <label class="custom-control-label" for="select-all"></label>
-                                        </div>
-                                    </th>
-                                    <th>Appointment ID</th>
-                                    <th>Patient Name</th>
-                                    <th>Date</th>
-                                    <th>Session</th>
-                                    <th>Doctor Name</th>
-                                    <th>Status</th>
-
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                    <h3 class="widget-title">Responder Details</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                             <tbody>
-
-
-
-                                @foreach ($appointments as $appointment)
                                 <tr>
+                                    <td><strong>Responder ID</strong></td>
+                                    <td>{{$responder->id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Responder Name</strong></td>
+                                    <td>{{$responder->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mobile</strong></td>
+                                    <td>{{$responder->mobile}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Email </strong></td>
+                                    <td>{{$responder->email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Specialization </strong></td>
                                     <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="12">
-                                            <label class="custom-control-label" for="12"></label>
-                                        </div>
-                                    </td>
-                                    <td>{{$appointment->id}}</td>
-                                    <td>{{$appointment->user->name}}</td>
-                                    <td>{{$appointment->date}}</td>
-                                    <td>{{$appointment->time_slot}}</td>
-                                    <td>{{$appointment->doctor->name}}</td>
-                                    <td>
-                                        @if ($appointment->status==0)
-                                        <span class="badge badge-warning">Pending</span>
-                                        @else
-                                        <span class="badge badge-success">Completed</span>
-                                        @endif
+                                        {{ $responder->specialisation }}
 
-                                    </td>
-                                    <td>
-                                        <a href="/user/appointmentdetails/{{ $appointment->id }}"
-                                            class="btn btn-success">View</a>
                                     </td>
                                 </tr>
-                                @endforeach
+
+                                <tr>
+                                    <td><strong>Created </strong></td>
+                                    <td>
+                                        {{ $responder->created_at->diffForHumans() }}
+
+                                    </td>
+                                </tr>
 
 
 
@@ -122,10 +107,14 @@
 
                             </tbody>
                         </table>
-
                         <!--Export links-->
 
                         <!-- /Export links-->
+
+
+
+
+
 
                     </div>
                 </div>
@@ -133,5 +122,13 @@
             <!-- /Widget Item -->
         </div>
     </div>
+
+
+
+    {{-- my modal goes here --}}
+
+
+
+
 </div>
 @endsection

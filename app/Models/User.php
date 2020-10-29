@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable,Messagable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,12 +43,14 @@ class User extends Authenticatable
     ];
 
 
-    public  function appointments(){
+    public  function appointments()
+    {
 
-        return $this->hasMany(Appointment::class,"user_id");
+        return $this->hasMany(Appointment::class, "user_id");
     }
 
-    public function emergencies(){
+    public function emergencies()
+    {
 
         return $this->hasMany(Emergency::class);
     }

@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.adminlayout')
 
 @section('content')
 <div id="content">
@@ -42,7 +42,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding">
         <div class="col-md-6">
-            <h3 class="block-title">My Appointment </h3>
+            <h3 class="block-title"> Appointments </h3>
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -52,7 +52,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">My Appointment </li>
+                <li class="breadcrumb-item active"> Appointments </li>
             </ol>
         </div>
     </div>
@@ -78,8 +78,8 @@
                                     <th>Patient Name</th>
                                     <th>Date</th>
                                     <th>Session</th>
-                                    <th>Doctor Name</th>
                                     <th>Status</th>
+                                    <th>Doctor Name</th>
 
                                     <th>Action</th>
                                 </tr>
@@ -88,33 +88,32 @@
 
 
 
-                                @foreach ($appointments as $appointment)
-                                <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="12">
-                                            <label class="custom-control-label" for="12"></label>
-                                        </div>
-                                    </td>
-                                    <td>{{$appointment->id}}</td>
-                                    <td>{{$appointment->user->name}}</td>
-                                    <td>{{$appointment->date}}</td>
-                                    <td>{{$appointment->time_slot}}</td>
-                                    <td>{{$appointment->doctor->name}}</td>
-                                    <td>
-                                        @if ($appointment->status==0)
-                                        <span class="badge badge-warning">Pending</span>
-                                        @else
-                                        <span class="badge badge-success">Completed</span>
-                                        @endif
+@foreach ($appointments as $appointment)
+<tr>
+    <td>
+        <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" type="checkbox" id="12">
+            <label class="custom-control-label" for="12"></label>
+        </div>
+    </td>
+<td>{{$appointment->id}}</td>
+<td>{{$appointment->user->name}}</td>
+<td>{{$appointment->date}}</td>
+<td>{{$appointment->time_slot}}</td>
+<td>
+@if ($appointment->status==0)
+<span class="badge badge-warning">Pending</span>
+@else
+<span class="badge badge-success">Completed</span>
+@endif
 
-                                    </td>
-                                    <td>
-                                        <a href="/user/appointmentdetails/{{ $appointment->id }}"
-                                            class="btn btn-success">View</a>
-                                    </td>
-                                </tr>
-                                @endforeach
+</td>
+<td>{{$appointment->doctor->name}}</td>
+    <td>
+    <a href="/admin/appointments/{{$appointment->id}}" class="btn btn-success">View</a>
+    </td>
+</tr>
+@endforeach
 
 
 

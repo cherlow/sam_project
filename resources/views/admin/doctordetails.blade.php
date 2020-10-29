@@ -42,7 +42,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding">
         <div class="col-md-6">
-            <h3 class="block-title"> Doctors</h3>
+            <h3 class="block-title">Doctor Details
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -51,74 +51,70 @@
                         <span class="ti-home"></span>
                     </a>
                 </li>
-                <li class="breadcrumb-item">Doctors</li>
-                <li class="breadcrumb-item active"> Doctors</li>
+                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item active">Doctor Details </li>
             </ol>
         </div>
     </div>
-    <!-- /Page Title -->
 
-    <!-- /Breadcrumb -->
-    <!-- Main Content -->
+    {{-- my emergency list here --}}
+
     <div class="container-fluid">
 
         <div class="row">
             <!-- Widget Item -->
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow">
-                    <h3 class="widget-title">Doctors List</h3>
-                    <div class="table-responsive mb-3">
-                        <table id="tableId" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="no-sort">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="select-all">
-                                            <label class="custom-control-label" for="select-all"></label>
-                                        </div>
-                                    </th>
-                                    <th>Doctor ID</th>
-                                    <th>Doctor Name</th>
-                                    <th>Experience <small>(in Years)</small></th>
-                                    <th>Phone</th>
-                                    <th>Specialization</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                    <h3 class="widget-title">Doctor Details</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                             <tbody>
-
-
-
-
-
-
-                                @foreach ($doctors as $doctor)
+                                <tr>
+                                    <td><strong>Doctor ID</strong></td>
+                                    <td>{{$user->id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Doctor Name</strong></td>
+                                    <td>{{$user->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Specialisation</strong></td>
+                                    <td>{{$user->specialization}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Experience</strong></td>
+                                    <td>{{$user->experience}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Age </strong></td>
+                                    <td>{{$user->age}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Mobile </strong></td>
+                                    <td>{{$user->phone}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Gender </strong></td>
+                                    <td>{{$user->gender}}</td>
+                                </tr>
 
                                 <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="7">
-                                            <label class="custom-control-label" for="7"></label>
-                                        </div>
-                                    </td>
-                                    <td>{{$doctor->id}}</td>
-                                    <td>{{$doctor->name}}</td>
-                                    <td>{{$doctor->experience}}</td>
-                                    <td>{{$doctor->phone}}</td>
-                                    <td>{{$doctor->specialization}}</td>
-                                    <td>
-                                        <a href="/admin/doctors/{{ $doctor->id }}" class="btn btn-success"> View</a>
-                                    </td>
+                                    <td><strong>Details </strong></td>
+                                    <td>{{$user->details}}</td>
                                 </tr>
-                                @endforeach
 
 
+
+                                <tr>
+                                    <td><strong>Created</strong></td>
+                                    <td>{{$user->created_at->diffForHumans()}}</td>
+                                </tr>
                             </tbody>
                         </table>
-
                         <!--Export links-->
 
                         <!-- /Export links-->
+
 
                     </div>
                 </div>
@@ -126,6 +122,13 @@
             <!-- /Widget Item -->
         </div>
     </div>
-    <!-- /Main Content -->
+
+
+
+    {{-- my modal goes here --}}
+
+
+
+
 </div>
 @endsection

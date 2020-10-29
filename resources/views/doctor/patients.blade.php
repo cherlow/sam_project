@@ -93,30 +93,32 @@
 
 
 
-@foreach ($patients as $patient)
+                                @foreach ($patients as $patient)
 
-<tr>
-    <td>
-        <div class="custom-control custom-checkbox">
-            <input class="custom-control-input" type="checkbox" id="7">
-            <label class="custom-control-label" for="7"></label>
-        </div>
-    </td>
-<td>{{$patient->id}}</td>
-<td>{{$patient->name}}</td>
-<td>{{$patient->email}}</td>
-<td>{{count($patient->emergencies)}}</td>
-<td>{{count($patient->Appointments)}}</td>
-    <td>
+                                <tr>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="7">
+                                            <label class="custom-control-label" for="7"></label>
+                                        </div>
+                                    </td>
+                                    <td>{{$patient->id}}</td>
+                                    <td>{{$patient->name}}</td>
+                                    <td>{{$patient->email}}</td>
+                                    <td>{{count($patient->emergencies)}}</td>
+                                    <td>{{count($patient->Appointments)}}</td>
+                                    <td>
 
-        <a href="#" class="btn btn-success"> View </a>
-    </td>
+                                        <a href="/doctor/patientdetails/{{ $patient->id }}" class="btn btn-success">
+                                            View </a>
+                                    </td>
 
-    <td>
-    <a href="/doctor/messages/{{$patient->id}}" class="btn btn-success"> Message </a>
-    </td>
-</tr>
-@endforeach
+                                    <td>
+                                        <a href="/doctor/messages/{{$patient->id}}" class="btn btn-success"> Message
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
 
 
                             </tbody>

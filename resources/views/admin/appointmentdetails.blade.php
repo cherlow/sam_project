@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.adminlayout')
 
 @section('content')
 <div id="content">
@@ -42,7 +42,7 @@
     <!-- Page Title -->
     <div class="row no-margin-padding">
         <div class="col-md-6">
-            <h3 class="block-title">My Appointment </h3>
+            <h3 class="block-title">Appointment Details
         </div>
         <div class="col-md-6">
             <ol class="breadcrumb">
@@ -52,10 +52,12 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">Dashboard</li>
-                <li class="breadcrumb-item active">My Appointment </li>
+                <li class="breadcrumb-item active">Appointment Details </li>
             </ol>
         </div>
     </div>
+
+    {{-- my emergency list here --}}
 
     <div class="container-fluid">
 
@@ -63,44 +65,28 @@
             <!-- Widget Item -->
             <div class="col-md-12">
                 <div class="widget-area-2 proclinic-box-shadow">
-                    <h3 class="widget-title">Appointments List</h3>
-                    <div class="table-responsive mb-3">
-                        <table id="tableId" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th class="no-sort">
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="select-all">
-                                            <label class="custom-control-label" for="select-all"></label>
-                                        </div>
-                                    </th>
-                                    <th>Appointment ID</th>
-                                    <th>Patient Name</th>
-                                    <th>Date</th>
-                                    <th>Session</th>
-                                    <th>Doctor Name</th>
-                                    <th>Status</th>
-
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                    <h3 class="widget-title">Appointment Details</h3>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
                             <tbody>
-
-
-
-                                @foreach ($appointments as $appointment)
                                 <tr>
-                                    <td>
-                                        <div class="custom-control custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="12">
-                                            <label class="custom-control-label" for="12"></label>
-                                        </div>
-                                    </td>
+                                    <td><strong>Appointment ID</strong></td>
                                     <td>{{$appointment->id}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Patient Name</strong></td>
                                     <td>{{$appointment->user->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date</strong></td>
                                     <td>{{$appointment->date}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Session </strong></td>
                                     <td>{{$appointment->time_slot}}</td>
-                                    <td>{{$appointment->doctor->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Status </strong></td>
                                     <td>
                                         @if ($appointment->status==0)
                                         <span class="badge badge-warning">Pending</span>
@@ -109,23 +95,44 @@
                                         @endif
 
                                     </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td><strong>Doctor </strong></td>
                                     <td>
-                                        <a href="/user/appointmentdetails/{{ $appointment->id }}"
-                                            class="btn btn-success">View</a>
+
+                                        {{$appointment->doctor->name}}
                                     </td>
                                 </tr>
-                                @endforeach
+                                <tr>
+                                    <td><strong>Details </strong></td>
+                                    <td>
 
+                                        {{$appointment->details}}
 
+                                    </td>
+                                </tr>
 
+                                <tr>
+                                    <td><strong>Doctor Notes </strong></td>
+                                    <td>
 
+                                        {{$appointment->notes}}
+
+                                    </td>
+                                </tr>
 
                             </tbody>
                         </table>
-
                         <!--Export links-->
 
                         <!-- /Export links-->
+
+
+
+
+
 
                     </div>
                 </div>
@@ -133,5 +140,44 @@
             <!-- /Widget Item -->
         </div>
     </div>
+
+
+
+    {{-- my modal goes here --}}
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Add Doctor Notes</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/addnotes/{{$appointment->id}}" method="POST">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Doctor Notes</label>
+
+                            <textarea class="form-control" id="exampleFormControlSelect1" rows="5"
+                                name="notes"></textarea>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-success"> submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+        <!-- /.col-sm-9 -->
+    </div>
+
 </div>
 @endsection

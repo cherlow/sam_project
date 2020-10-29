@@ -1,4 +1,4 @@
-@extends('layouts.doctorlayout')
+@extends('layouts.userlayout')
 
 @section('content')
 <div id="content">
@@ -6,7 +6,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="responsive-logo">
-                <a href="index.html"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
+                <a href="#"><img src="images/logo-dark.png" class="logo" alt="logo"></a>
             </div>
             <ul class="nav">
                 <li class="nav-item">
@@ -130,9 +130,7 @@
                         <!-- /Export links-->
 
 
-                        <button type="button" class="btn btn-success mb-3" data-toggle="modal"
-                            data-target="#exampleModalCenter"><span class="ti-plus"></span>
-                            Doctor Notes</button>
+
 
 
 

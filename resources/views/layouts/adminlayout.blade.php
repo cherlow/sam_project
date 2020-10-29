@@ -61,7 +61,7 @@
                 </li>
 
                 <li class="">
-                    <a href="/home">
+                    <a href="/admin/patients">
                         <span class="ti-wheelchair"></span> Patients
                     </a>
 
@@ -83,7 +83,7 @@
 
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/admin/appointments">
                         <span class="ti-pencil-alt"></span> Appointments
                     </a>
 

@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="/css/themify-icons.css">
     <!-- Animations CSS -->
     <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/message.css">
+
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/red.css" id="style_theme">
@@ -76,7 +78,7 @@
                             <a href="/user/appointments">New Appointment</a>
                         </li>
                         <li>
-                        <a href="/user/appointments/{{auth()->user()->id}}">My Appointments</a>
+                            <a href="/user/appointments/{{auth()->user()->id}}">My Appointments</a>
                         </li>
 
                     </ul>
@@ -102,7 +104,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/user/messages">
                         <span class="ti-email"></span> Messages
                     </a>
 
