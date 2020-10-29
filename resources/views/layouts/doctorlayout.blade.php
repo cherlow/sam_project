@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/css/animate.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/message.css">
     <link rel="stylesheet" href="/css/red.css" id="style_theme">
     <link rel="stylesheet" href="/css/responsive.css">
     <!-- morris charts -->
@@ -61,22 +62,15 @@
                 </li>
 
                 <li>
-                    <a href="#nav-icons" data-toggle="collapse" aria-expanded="false">
+                    <a href="/doctor/patients" >
                         <span class="ti-user"></span> Patients
                     </a>
 
-                    <ul class="collapse list-unstyled" id="nav-icons">
-                        <li>
-                            <a href="font-awesome.html">Patient Records </a>
-                        </li>
-                        <li>
-                            <a href="themify.html">New Patient Record</a>
-                        </li>
-                    </ul>
+
 
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/doctor/appointments">
                         <span class="ti-pencil-alt"></span> Appointments
                     </a>
 
@@ -85,7 +79,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/doctor/messages">
                         <span class="ti-email"></span> Messages
                     </a>
 

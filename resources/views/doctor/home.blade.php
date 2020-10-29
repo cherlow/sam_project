@@ -1,4 +1,4 @@
-@extends('layouts.userlayout')
+@extends('layouts.doctorlayout')
 
 @section('content')
 <div id="content">

@@ -29,7 +29,7 @@ class HomeController extends Controller
 
             return view("admin.home");
         } elseif (
-            auth()->user()->role == 3
+            auth()->user()->role == 2
         ) {
             return view("doctor.home");
         } else {

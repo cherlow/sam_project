@@ -61,7 +61,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/user/doctors">
                         <span class="ti-user"></span> Doctors
                     </a>
 
@@ -73,10 +73,10 @@
 
                     <ul class="collapse list-unstyled" id="nav-rooms">
                         <li>
-                            <a href="#">New Appointment</a>
+                            <a href="/user/appointments">New Appointment</a>
                         </li>
                         <li>
-                            <a href="#">My Appointments</a>
+                        <a href="/user/appointments/{{auth()->user()->id}}">My Appointments</a>
                         </li>
 
                     </ul>
@@ -91,10 +91,10 @@
 
                     <ul class="collapse list-unstyled" id="nav-emargencies">
                         <li>
-                            <a href="#">New Emergency Request</a>
+                            <a href="/emergencycreate">New Emergency Request</a>
                         </li>
                         <li>
-                            <a href="#">My Emergency Requests</a>
+                            <a href="/user/emergency">My Emergency Requests</a>
                         </li>
 
                     </ul>
@@ -111,12 +111,7 @@
                 </li>
 
 
-                <li>
-                    <a href="#">
-                        <span class="ti-list"></span> Orders
-                    </a>
 
-                </li>
 
 
 

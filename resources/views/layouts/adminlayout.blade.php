@@ -92,7 +92,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/admin/emergency">
                         <span class="ti-truck"></span> Emergency
                     </a>
 
@@ -106,38 +106,17 @@
 
                     <ul class="collapse list-unstyled" id="nav-emer">
                         <li>
-                            <a href="font-awesome.html">All Responders </a>
+                            <a href="/responders/index">All Responders </a>
                         </li>
                         <li>
-                            <a href="themify.html">New Responder</a>
+                            <a href="/admin/responders">New Responder</a>
                         </li>
                     </ul>
 
                 </li>
 
-                <li>
-                    <a href="#nav-prod" data-toggle="collapse" aria-expanded="false">
-                        <span class="ti-layers-alt"></span> Products
-                    </a>
-
-                    <ul class="collapse list-unstyled" id="nav-prod">
-                        <li>
-                            <a href="font-awesome.html">All Products </a>
-                        </li>
-                        <li>
-                            <a href="themify.html">New Product</a>
-                        </li>
-                    </ul>
-
-                </li>
-
-                <li>
-                    <a href="#">
-                        <span class="ti-bookmark"></span> Orders
-                    </a>
 
 
-                </li>
 
 
 

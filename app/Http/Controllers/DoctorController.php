@@ -15,7 +15,9 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        return User::where("role", 2)->get();
+        $doctors= User::where("role", 2)->get();
+
+        return view("admin.doctors")->with("doctors",$doctors);
     }
 
     /**
@@ -53,7 +55,7 @@ class DoctorController extends Controller
 
         $user->save();
 
-        return redirect()->back();
+        return redirect("/admin/doctors");
     }
 
     /**
@@ -99,5 +101,15 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
         //
+    }
+
+
+    public function userdoctors(){
+
+
+        $doctors= User::where("role", 2)->get();
+
+        return view("user.doctors")->with("doctors",$doctors);
+
     }
 }
