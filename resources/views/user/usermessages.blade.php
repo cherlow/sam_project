@@ -76,7 +76,7 @@
 
 
                         @if ($chat->from_id != auth()->user()->id)
-                        <a href="/doctor/messages/{{$users->where('id',$chat->from_id)->first()->id }}">
+                        <a href="/user/messages/{{$users->where('id',$chat->from_id)->first()->id }}">
                             <div class="chat_list active_chat">
                                 <div class="chat_people">
                                     <div class="chat_ib">
@@ -107,7 +107,7 @@
                         @else
 
 
-                        <a href="/doctor/messages/{{$users->where('id',$chat->to_id)->first()->id }}">
+                        <a href="/user/messages/{{$users->where('id',$chat->to_id)->first()->id }}">
                             <div class="chat_list active_chat">
                                 <div class="chat_people">
                                     <div class="chat_ib">
